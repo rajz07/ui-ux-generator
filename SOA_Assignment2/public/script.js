@@ -94,7 +94,7 @@ function updatePreview(templateName, uiType, category, color, theme, background)
                             <p class="message-text">Hello Kavin, Do we have class today? </p>
                         </div>
                         <div class="message">
-                            <p class="message-text">Hi Arun. Yes, we do?</p>
+                            <p class="message-text">Hi Arun. Yes, we do</p>
                         </div>
                         <div class="message">
                             <p class="message-text">Great! thank you!</p>
