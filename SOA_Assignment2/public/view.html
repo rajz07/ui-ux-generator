@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Generated UI/UX</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center my-4">
+            <h1>Generated UI/UX Templates</h1>
+            <div>
+                <button id="clearData" class="btn btn-danger">Clear All Data</button>
+                <a href="/" class="btn btn-secondary ml-2">Back</a>
+            </div>
+        </div>
+        <input type="text" id="searchBar" class="form-control mb-4" placeholder="Search by Template Name">
+        <div id="templates" class="row"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script>
+        // Fetch templates from the database
+        fetch('/api/templates')
+            .then(response => response.json())
+            .then(data => {
+                renderTemplates(data);
+            })
+            .catch(error => console.error('Error:', error));
+
+        function renderTemplates(templates) {
+            const templatesContainer = document.getElementById('templates');
+            templatesContainer.innerHTML = '';
+            templates.forEach(template => {
+                const templateCard = document.createElement('div');
+                templateCard.className = 'col-md-4 mb-4';
+                templateCard.innerHTML = `
+                        <div class="card">
+                            <div class="card-header">
+                                ${template.templateName} - ${template.category}
+                                <button class="btn btn-danger btn-sm float-right" onclick="deleteTemplate(${template.id})">Delete</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="template-thumbnail">
+                                    ${template.htmlContent}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                templatesContainer.appendChild(templateCard);
+
+                // Initialize the calendar if the category is calendar
+                if (template.category === 'calendar') {
+                    $(templateCard).find('.calendar').fullCalendar();
+                }
+            });
+        }
+
+        function deleteTemplate(id) {
+            fetch(`/api/templates/${id}`, {
+                method: 'DELETE',
+            })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    alert(data);
+                    location.reload(); // Reload the page to update the template list
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        document.getElementById('clearData').addEventListener('click', function () {
+            fetch('/clear', {
+                method: 'POST',
+            })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    alert(data);
+                    location.reload(); // Reload the page to update the template list
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('searchBar').addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            fetch('/api/templates')
+                .then(response => response.json())
+                .then(data => {
+                    const filteredTemplates = data.filter(template => template.templateName.toLowerCase().includes(searchTerm));
+                    renderTemplates(filteredTemplates);
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

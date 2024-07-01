@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Generator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 sidebar d-flex flex-column align-items-center justify-content-center">
+                <h2 class="text-center">Options</h2>
+                <form id="generatorForm">
+                    <div class="form-group">
+                        <label for="templateName">Template Name:</label>
+                        <input type="text" class="form-control" id="templateName" name="templateName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="uiType">UI Type:</label>
+                        <select class="form-control" name="uiType" id="uiType">
+                            <option value="desktop">Desktop</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select class="form-control" name="category" id="category">
+                            <option value="dashboard">Dashboard</option>
+                            <option value="calendar">Calendar</option>
+                            <option value="messenger">Messenger</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color:</label>
+                        <select class="form-control" name="color" id="color">
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>
+                            <option value="red">Red</option>
+                            <option value="orange">Orange</option>
+                            <option value="black">Black</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme">Theme:</label>
+                        <select class="form-control" name="theme" id="theme">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="background">Background:</label>
+                        <select class="form-control" name="background" id="background">
+                            <option value="">None</option>
+                            <option value="bg-1.jpg">Background 1</option>
+                            <option value="bg-2.jpg">Background 2</option>
+                            <option value="bg-3.jpg">Background 3</option>
+                            <option value="bg-4.jpg">Background 4</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generate</button>
+                </form>
+                <a href="/view" class="btn btn-secondary mt-3">View Generated UI/UX</a>
+            </div>
+            <div class="col-md-8 col-lg-8 preview-area d-flex align-items-center justify-content-center">
+                <div id="preview" class="border p-4 w-100 h-100 d-flex align-items-center justify-content-center">
+                    <h2>Preview</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

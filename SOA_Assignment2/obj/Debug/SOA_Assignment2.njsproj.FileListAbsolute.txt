@@ -1,0 +1,3 @@
+C:\Users\kavin\source\repos\SOA Assignment 2\SOA_Assignment2\obj\Debug\SOA_Assignment2.njsproj.AssemblyReference.cache
+C:\Users\kavin\source\repos\SOA Assignment 2\SOA_Assignment2\obj\Debug\SOA_Assignment2.njsproj.CoreCompileInputs.cache
+C:\Users\kavin\source\repos\SOA Assignment 2\SOA_Assignment2\bin\Microsoft.NodejsTools.WebRole.dll
