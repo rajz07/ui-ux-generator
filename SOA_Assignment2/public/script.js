@@ -35,6 +35,27 @@ document.getElementById('clearData').addEventListener('click', function () {
         .catch(error => console.error('Error:', error));
 });
 
+function generateRandom() {
+    function getRandomItem(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    const uiTypes = ['desktop'];
+    const categories = ['dashboard', 'calendar', 'messenger'];
+    const colors = ['blue', 'green', 'red', 'orange', 'black'];
+    const themes = ['light', 'dark'];
+    const backgrounds = ['', 'bg-1.jpg', 'bg-2.jpg', 'bg-3.jpg', 'bg-4.jpg'];
+
+    document.getElementById('uiType').value = getRandomItem(uiTypes);
+    document.getElementById('category').value = getRandomItem(categories);
+    document.getElementById('color').value = getRandomItem(colors);
+    document.getElementById('theme').value = getRandomItem(themes);
+    document.getElementById('background').value = getRandomItem(backgrounds);
+    document.getElementById('templateName').value = 'Random Design ' + Math.floor(Math.random() * 1000);
+
+    document.getElementById('generatorForm').dispatchEvent(new Event('submit'));
+}
+
 function updatePreview(templateName, uiType, category, color, theme, background) {
     const preview = document.getElementById('preview');
     preview.innerHTML = ''; // Clear previous content
