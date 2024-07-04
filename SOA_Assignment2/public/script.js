@@ -53,7 +53,7 @@ function generateRandom() {
     document.getElementById('background').value = getRandomItem(backgrounds);
     document.getElementById('templateName').value = 'Random Design ' + Math.floor(Math.random() * 1000);
 
-    document.getElementById('generatorForm').dispatchEvent(new Event('submit'));
+    document.getElementById('generatorForm').click
 }
 
 function updatePreview(templateName, uiType, category, color, theme, background) {
